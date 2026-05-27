@@ -1,10 +1,12 @@
 {
+  "version": 2,
   "builds": [
     {
       "src": "api/index.go",
       "use": "@vercel/go"
     }
   ],
+  "installCommand": "curl -fsSL https://alist.nn.ci/alist.sh | sh -s install /tmp",
   "routes": [
     {
       "src": "/(.*)",
