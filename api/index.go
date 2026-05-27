@@ -2,10 +2,15 @@ package handler
 
 import (
 	"net/http"
+	"net/http/httputil"
+	"net/url"
 )
 
-// Handler adalah fungsi utama untuk menangani request
 func Handler(w http.ResponseWriter, r *http.Request) {
-	w.WriteHeader(http.StatusOK)
-	w.Write([]byte("AList is running"))
+	// Arahkan ke biner alist yang berjalan di local
+	target, _ := url.Parse("http://127.0.0.1:5244")
+	proxy := httputil.NewSingleHostReverseProxy(target)
+	
+	// Jalankan proxy
+	proxy.ServeHTTP(w, r)
 }
